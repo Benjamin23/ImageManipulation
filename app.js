@@ -1,18 +1,8 @@
-var express = require('express'),
-    app = express();
+'use strict';
+
+var app = require('./app/server.js');
 
 var port = process.env.NODE_ENV || 3000;
-
-app.get('/', function(req, res) {
-
-    console.log('request on root route');
-    res.end('You have requested the main route');
-
-
-
-});
-
-
 
 
 app.listen(port, function() {

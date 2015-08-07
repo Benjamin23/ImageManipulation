@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="imageUploadApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Image manipulation test</title>
+    <link type="text/css" rel="stylesheet" href="./style/style.css">
+</head>
+<body ng-controller="UploadController">
+    <h2> Image Upload with AngularJS and FlowJS</h2>
+
+
+        Select your images with file browser:
+        <div class="button" ngf-select ng-model="files" ngf-multiple="true">Select files</div>
+
+        Or drag and drop your images in this box (If you click on the box, file browser will open):
+
+        <div ngf-drop ngf-select ng-model="files" class="drop-box"
+             ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+             accept="image/*">Drop images here or click to upload</div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        Files to upload:
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+        </ul>
+        Upload Log:
+        <pre>{{log}}</pre>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="./scripts/uploadController.js"></script>
+</body>
+</html>

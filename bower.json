@@ -1,0 +1,20 @@
+{
+  "name": "meanImageManipulation",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Benjamin23/ImageManipulation",
+  "authors": [
+    "Benjamin23 <benjamin_suk@yahoo.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "ng-file-upload": "~6.0.4"
+  }
+}
