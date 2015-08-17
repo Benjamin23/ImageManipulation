@@ -1,45 +1,56 @@
 'use strict';
 
 var express = require('express'),
-    formidable = require('formidable'),
-    util = require('util'),
+    imageUploader = require('./image-uploader/image-uploader.js'),
     app = express();
+
 
 app.use(express.static('./public'));
 
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.render('./public/index.html');
 });
 
-app.post('/upload', function (req, res) {
 
-    var form = new formidable.IncomingForm();
+app.post('/upload', imageUploader.validateImageProperties, imageUploader.createDirectoryStructure, function (req, res) {
 
-    //Temp folder gdje sprema datoteke prije parsiranja
-    form.uploadDir = "temp";
 
-    //Ako je false, spremit ce bez ekstenzije u uploadDir
-    form.keepExtensions = true;
 
-    //Kolicina memorije u bajtovima za sve fields zajedno, default je 2MB
-    form.maxFieldsSize = 2 * 1024 * 1024;
 
-    form.on('progress',function(recived, total) {
-            console.log(recived +' from total '+ total);
+
+    console.log(" \nRecived files");
+    console.log(JSON.stringify(req.files));
+
+    console.log("\nRecived fields");
+    console.log(JSON.stringify(req.fields));
+
+    console.log("\nCreated direcotries");
+    console.log(JSON.stringify(req.directories));
+
+    imageUploader.convertAndSaveImages(req.files, req.directories, req.fields, function(err) {
+       if(err) {
+           console.log(err);
+       }  else {
+           console.log('All good');
+       }
+
     });
 
+    /*
+    Ovdje imamo kreiranu folderstructure te su sve slike ispravne
+    */
 
-    form.parse(req, function(err, fields, files) {
-
-        console.log('Parsing');
-
-        res.status(200).send("Success");
-
-    });
-
+    /*
+    Dodati brisanje temp file-ova nakon upload-a
+     */
 
 
+
+
+
+
+    res.end();
 
 });
 
@@ -47,3 +58,4 @@ app.post('/upload', function (req, res) {
 
 
 module.exports = app;
+

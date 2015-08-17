@@ -9,14 +9,15 @@
     <h2> Image Upload with AngularJS and FlowJS</h2>
 
 
+
         Select your images with file browser:
-        <div class="button" ngf-select ng-model="files" ngf-multiple="true">Select files</div>
+        <div class="button" ngf-select ng-model="files" ngf-multiple="true" accept="image/png,image/jpg,image/jpeg,image/bmp,image/tiff" ngf-min-size="1024" ngf-max-size="10*1024*1024" ng-model-rejected="rejectedFiles">Select files</div>
 
         Or drag and drop your images in this box (If you click on the box, file browser will open):
 
         <div ngf-drop ngf-select ng-model="files" class="drop-box"
              ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-             accept="image/*">Drop images here or click to upload</div>
+             accept="image/png,image/jpg,image/jpeg,image/bmp,image/tiff">Drop images here or click to upload</div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
         Files to upload:
         <ul>
@@ -30,7 +31,9 @@
 
 
 
-
+    <ul ng-if="errors" ng-repeat="err in errors">
+        <li> Error: {{err}}  </li>
+    </ul>
 
 
 
