@@ -13,9 +13,7 @@ app.get('/', function (req, res) {
 });
 
 
-app.post('/upload', imageUploader.validateImageProperties, imageUploader.createDirectoryStructure, function (req, res) {
-
-
+app.post('/upload', imageUploader.validateImageProperties, function (req, res) {
 
 
 
@@ -25,36 +23,26 @@ app.post('/upload', imageUploader.validateImageProperties, imageUploader.createD
     console.log("\nRecived fields");
     console.log(JSON.stringify(req.fields));
 
-    console.log("\nCreated direcotries");
-    console.log(JSON.stringify(req.directories));
-
-    imageUploader.convertAndSaveImages(req.files, req.directories, req.fields, function(err) {
-       if(err) {
-           console.log(err);
-       }  else {
-           console.log('All good');
-       }
-
-    });
-
     /*
-    Ovdje imamo kreiranu folderstructure te su sve slike ispravne
+    Nako sto je middleware provjerio svojstva slika, mozemo ih spremiti
+    Pomocu podataka iz requesta, pravimo main putanju
     */
+    var userName = req.userName || 'Benjamin';
+    var dirName = req.directory || 'vehicles';
 
-    /*
-    Dodati brisanje temp file-ova nakon upload-a
-     */
+    var currentUsersPath = userName.toLowerCase() + '/' + dirName.toLowerCase();
 
-
-
-
-
+    imageUploader.convertAndSaveImages(req.files, currentUsersPath, req.fields, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('All good');
+        }
+    });
 
     res.end();
 
 });
-
-
 
 
 module.exports = app;

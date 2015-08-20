@@ -48,40 +48,6 @@ app.controller('UploadController', ['$scope', 'Upload', '$timeout', function ($s
                 }
             }
 
-              ////Slanje array-a zahvaljujuci html5 file api-u
-              //  Upload.upload({
-              //      url: '/upload',
-              //      method: 'POST',
-              //      fields: {
-              //          'username': 'BenjaminFields',
-              //          'password': 'Benjamin Pass',
-              //          'nekaTrecaVar':'Neka treca'
-              //      },
-              //
-              //      file: files
-              //  }).progress(function (evt) {
-              //      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-              //      $scope.log = 'progress: ' + progressPercentage + '% ' +
-              //          '\n' + $scope.log;
-              //  }).success(function (data, status, headers, config) {
-              //      $timeout(function () {
-              //          $scope.log = 'Response: ' + JSON.stringify(data) + '\n' + $scope.log;
-              //      });
-              //  }).error(function (data, status, headers, config) {
-              //      $scope.errors.push(data);
-              //
-              //  }).xhr(function (xhr) {
-              //
-              //      xhr.addEventListener("loadend", function () {
-              //        //  alert("Upload done");
-              //      }, false);
-              //
-              //  });
-
-
-
-
-
             //Moguce je i array slati, ali zbog obrade na serveru je jednostavnije ovako
             for (var i = 0; i < numberOfFiles; i++) {
 
