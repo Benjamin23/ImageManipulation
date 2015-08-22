@@ -1,3 +1,5 @@
-Image Manipulation Using the MEAN stack. 
+Image converting and saving
 
-Upload, Parse & save Images. 
+Uploading over ng-file-upload
+
+Converting and saving with formidable and gm

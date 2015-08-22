@@ -11,11 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "async": "^1.4.2",
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.13.3"
     "express": "^4.13.3",
     "formidable": "^1.0.17",
     "fs-extra": "^0.23.1",
-    "gm": "^1.18.1",
-    "lodash": "^3.10.1"
+    "gm": "^1.18.1"
   }
 }
