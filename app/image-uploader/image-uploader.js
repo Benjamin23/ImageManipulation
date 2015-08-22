@@ -120,6 +120,7 @@ exports.convertAndSaveImages = function (images, masterPath, fields, masterCallb
         imageConfiguration = config.imageSizes,
         directories = config.directories,
         mainDir = config.mainDir,
+        createdImagePaths = [],
         parseImage = function (img) {
 
             var image = gm(img.path),
@@ -138,12 +139,16 @@ exports.convertAndSaveImages = function (images, masterPath, fields, masterCallb
                         if (err) {
                             callback(err);
                         } else {
+                            //Dodavanje kreiranih lokacija u response object
+                            var newLocation = newPathName + '/' + img.name;
+                            createdImagePaths.push(newLocation);
+
                             //Ako je direktorij uspjesno kreiran, konvertiraj sliku i spremi
                             image
                                 .resize(dimension.width, dimension.height, '^')
                                 .gravity('Center')
                                 .crop(dimension.width, dimension.height)
-                                .write(newPathName + '/' + img.name, function (err) {
+                                .write(newLocation, function (err) {
                                     if (err) {
                                         callback(err);
                                     } else {
@@ -171,7 +176,7 @@ exports.convertAndSaveImages = function (images, masterPath, fields, masterCallb
                     if (imgCounter < numOfFiles) {
                         parseImage(images[imgCounter]);
                     } else {
-                        masterCallback();
+                        masterCallback(null, createdImagePaths);
                     }
                 }
 

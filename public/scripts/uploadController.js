@@ -69,7 +69,8 @@ app.controller('UploadController', ['$scope', 'Upload', '$timeout', function ($s
                         evt.config.file.name + '\n' + $scope.log;
                 }).success(function (data, status, headers, config) {
                     $timeout(function () {
-                        $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                       // $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                        console.log(data);
                     });
                 }).error(function (data, status, headers, config) {
                     $scope.errors.push(data);

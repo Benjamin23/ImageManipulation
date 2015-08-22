@@ -32,15 +32,16 @@ app.post('/upload', imageUploader.validateImageProperties, function (req, res) {
 
     var currentUsersPath = userName.toLowerCase() + '/' + dirName.toLowerCase();
 
-    imageUploader.convertAndSaveImages(req.files, currentUsersPath, req.fields, function (err) {
+    imageUploader.convertAndSaveImages(req.files, currentUsersPath, req.fields, function (err, uploadedFiles) {
         if (err) {
             console.log(err);
         } else {
-            console.log('All good');
+            console.log(JSON.stringify(uploadedFiles));
+            res.json(uploadedFiles);
         }
     });
 
-    res.end();
+
 
 });
 
